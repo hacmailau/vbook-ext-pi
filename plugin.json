@@ -1,0 +1,18 @@
+{
+    "metadata":  {
+                     "author":  "hacmailau",
+                     "description":  "vBook extensions (pi)"
+                 },
+    "data":  [
+                 {
+                     "name":  "9Router Translate",
+                     "author":  "vBook",
+                     "version":  1,
+                     "source":  "https://phuocpham.tail2c7010.ts.net",
+                     "path":  "https://raw.githubusercontent.com/hacmailau/vbook-ext-pi/main/9router-translate/plugin.zip",
+                     "description":  "Dịch nội dung bằng 9Router (API tương thích OpenAI)",
+                     "type":  "translate",
+                     "locale":  "global"
+                 }
+             ]
+}
