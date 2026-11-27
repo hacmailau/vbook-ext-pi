@@ -39,6 +39,8 @@ function request(method, urlStr, bodyObj) {
     const lib = u.protocol === "https:" ? https : http;
     const body = bodyObj != null ? JSON.stringify(bodyObj) : null;
     const headers = { "Accept": "application/json" };
+    let complete = false;
+    let received = 0;
     if (body != null) {
       headers["Content-Type"] = "application/json";
       headers["Content-Length"] = Buffer.byteLength(body);
@@ -51,11 +53,25 @@ function request(method, urlStr, bodyObj) {
       headers: headers,
     }, function (res) {
       let data = "";
+      const expected = Number(res.headers["content-length"]);
+      function incomplete() {
+        reject(new Error("aborted response: received " + received + " bytes; Content-Length " + expected));
+      }
       res.setEncoding("utf8");
-      res.on("data", function (c) { data += c; });
-      res.on("end", function () { resolve({ status: res.statusCode, text: data }); });
+      res.on("data", function (c) { data += c; received += Buffer.byteLength(c); });
+      res.on("aborted", incomplete);
+      res.on("error", reject);
+      res.on("end", function () {
+        complete = true;
+        if (Number.isFinite(expected) && received !== expected) { incomplete(); return; }
+        resolve({ status: res.statusCode, text: data });
+      });
     });
     req.on("error", reject);
+    req.on("close", function () {
+      if (!complete) reject(new Error("connection closed before a complete response"));
+    });
+    req.setTimeout(90000, function () { req.destroy(new Error("timeout after 90000ms")); });
     if (body != null) req.write(body);
     req.end();
   });

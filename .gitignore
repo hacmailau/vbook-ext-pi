@@ -7,6 +7,11 @@ history.bak
 .DS_Store
 .hotswan/
 /vbook-vscode-tester/node_modules
+node_modules/
+
+# secrets / local env
+.env
+.env.*
 
 # vbook CLI local server list (per-machine; copy from servers.example.json)
 .claude/skills/vbook-extensions/scripts/servers.json
