@@ -17,5 +17,6 @@ Do not infer permission to build, install, commit, or push from a request that o
 Source-first layout: every extension keeps plaintext `src/` plus `plugin.json`, `icon.png` and the built `plugin.zip`. `vbook.js test|build|install` works for all of them.
 
 - Read `README.md` for the layout and `docs/WORKFLOW.md` for the create/test/release workflow.
+- Read `docs/SYSTEM-OVERVIEW.md` for the runtime architecture, API contract layers, CLI path and common pitfalls (see its banner for which parts apply here).
 - Run `python scripts/check_repo.py` before committing; exit 0 is required.
 - Never commit API keys or personal host addresses into `src/` or `plugin.json`.

@@ -9,6 +9,7 @@
                      "author":  "vBook",
                      "version":  1,
                      "source":  "https://phuocpham.tail2c7010.ts.net",
+                     "icon":  "https://raw.githubusercontent.com/hacmailau/vbook-ext-pi/main/9router-translate/icon.png",
                      "path":  "https://raw.githubusercontent.com/hacmailau/vbook-ext-pi/main/9router-translate/plugin.zip",
                      "description":  "Dịch nội dung bằng 9Router (API tương thích OpenAI)",
                      "type":  "translate",
