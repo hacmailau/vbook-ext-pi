@@ -24,8 +24,8 @@ function items(rows) {
     if (row.cover) assert.match(row.cover, /^https:\/\//);
   }
 }
-run('detail.js', ['https://comnguoinovel.com/truyen/kiem-lai'], book => { assert.equal(book.name, 'Kiếm Lai'); assert.equal(book.type, 'novel'); assert.match(book.cover, /assets\.comnguoinovel\.com/); });
-run('toc.js', ['https://comnguoinovel.com/truyen/kiem-lai'], rows => {
+run('detail.js', ['https://comnguoinovel.site/truyen/kiem-lai'], book => { assert.equal(book.name, 'Kiếm Lai'); assert.equal(book.type, 'novel'); assert.match(book.cover, /assets\.comnguoinovel\.com/); });
+run('toc.js', ['https://comnguoinovel.site/truyen/kiem-lai'], rows => {
   assert.ok(rows.length >= 557);
   assert.equal(rows[0].name, 'Chương 1: Chương 0 : Tự chương');
   assert.ok(rows[0].url.endsWith('/chuong/1'));

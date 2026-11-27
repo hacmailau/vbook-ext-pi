@@ -13,7 +13,7 @@ function okJson(data) { return { ok: true, json: () => data }; }
 const base = context('config.js');
 assert.equal(base.slugify('Đạo Quỷ Dị Tiên'), 'dao-quy-di-tien');
 assert.equal(base.slugify('Kiếm Lai'), 'kiem-lai');
-assert.equal(base.normalizeUrl('https://old.example/truyen/kiem-lai'), 'https://comnguoinovel.com/truyen/kiem-lai');
+assert.equal(base.normalizeUrl('https://old.example/truyen/kiem-lai'), 'https://comnguoinovel.site/truyen/kiem-lai');
 assert.equal(base.paragraphHtml('<script>\nA & B'), '<p>&lt;script&gt;</p><p>A &amp; B</p>');
 assert.throws(() => base.route('/truyen/x/chuong/no', true));
 for (const status of [401, 403, 404, 410, 429, 500]) {
@@ -74,7 +74,7 @@ for (const [title, number, expected] of [
   const named = context('toc.js', { fetch: () => pageJson([{ title, chapter_number: String(number), is_locked: true }], 1, 1) }).execute('/truyen/t');
   assert.equal(named.code, 0);
   assert.equal(named.data[0].name, expected);
-  assert.equal(named.data[0].url, 'https://comnguoinovel.com/truyen/t/chuong/' + number);
+  assert.equal(named.data[0].url, 'https://comnguoinovel.site/truyen/t/chuong/' + number);
   assert.equal(named.data[0].lock, true);
   assert.equal(named.data[0].pay, false);
 }

@@ -2,11 +2,11 @@
   "metadata": {
     "name": "Cơm Nguội Novel",
     "author": "Personal",
-    "version": 2,
-    "source": "https://comnguoinovel.com",
+    "version": 3,
+    "source": "https://comnguoinovel.site",
     "description": "Tìm và đọc truyện Chung/BL. Cần đăng nhập thủ công trong trình duyệt VBook để đọc chương.",
     "locale": "vi",
-    "regexp": "(?:www\\.)?comnguoinovel\\.com/truyen/(?!latest(?:/|$)|popular(?:/|$)|top-read(?:/|$)|completed(?:/|$))[^/?#]+/?$",
+    "regexp": "(?:www\\.)?comnguoinovel\\.(?:site|com)/truyen/(?!latest(?:/|$)|popular(?:/|$)|top-read(?:/|$)|completed(?:/|$))[^/?#]+/?$",
     "type": "novel",
     "nsfw": false,
     "encrypt": false
@@ -23,7 +23,7 @@
   "config": {
     "DOMAIN": {
       "title": "Website",
-      "default": "https://comnguoinovel.com",
+      "default": "https://comnguoinovel.site",
       "mode": "input",
       "format": "text"
     },

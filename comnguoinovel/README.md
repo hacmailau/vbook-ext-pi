@@ -33,7 +33,7 @@ Mỗi lệnh CLI xác nhận thiết bị bằng `/connect`. `code: 0` trong k�
 
 ## Cách xử lý dữ liệu
 
-- Website: `https://comnguoinovel.com`; API: `https://api.comnguoinovel.com/api`; ảnh: `https://assets.comnguoinovel.com`.
+- Website: `https://comnguoinovel.site`; API: `https://api.comnguoinovel.site/api`; ảnh: `https://assets.comnguoinovel.site`.
 - `DOMAIN` đổi host các đường dẫn website; không tự đổi host API hoặc ảnh. Chỉ thay khi biết mirror tương thích.
 - Tìm kiếm chuẩn hóa dấu tiếng Việt và trả tối đa 100 kết quả, không có phân trang giả. Các danh sách có 20 truyện/trang; thể loại dùng slug.
 - Bản 2 lấy mục lục mới từ website mỗi lần tải, tối đa 1.000 chương/trang và tải tiếp theo `totalPages`. Kiếm Lai có 557 chương nên chỉ cần một request. Nếu trang lỗi, dữ liệu trùng hoặc số lượng thay đổi trong lúc tải, báo lỗi thay vì trả mục lục thiếu; kết quả sắp theo `chapter_number` tăng dần.

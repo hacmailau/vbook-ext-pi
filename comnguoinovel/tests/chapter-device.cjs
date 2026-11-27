@@ -7,7 +7,7 @@ if (!server) throw new Error('Cần URL server VBook.');
 const chapter = process.argv[3] || '2';
 const expectedCount = Number(process.argv[4] || '76');
 const expectedHash = process.argv[5];
-const url = 'https://comnguoinovel.com/truyen/kiem-lai/chuong/' + chapter;
+const url = 'https://comnguoinovel.site/truyen/kiem-lai/chuong/' + chapter;
 const text = execFileSync(process.execPath, ['.agents/skills/vbook-extensions/scripts/vbook.js', 'test', 'comnguoinovel', 'chap.js', url, '--server', server], { cwd: path.resolve(__dirname, '../..'), encoding: 'utf8', timeout: 90000, maxBuffer: 4 * 1024 * 1024 });
 const match = text.match(/\[test\] output:\n([\s\S]*?)\n\[test\] code=/);
 assert.ok(match, 'Không nhận được kết quả script.');

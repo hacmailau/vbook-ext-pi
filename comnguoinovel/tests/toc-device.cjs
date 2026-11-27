@@ -35,7 +35,7 @@ var requestCount = 0, originalApiGet = apiGet;
 apiGet = function (path) { requestCount++; return originalApiGet(path); };
 `;
     fs.writeFileSync(path.join(temp, 'src/toc.js'), probe);
-    const output = execFileSync(process.execPath, ['.agents/skills/vbook-extensions/scripts/vbook.js', 'test', temp, 'toc.js', 'https://comnguoinovel.com/truyen/' + slug, '--server', server], { cwd: root, encoding: 'utf8', timeout: 120000, maxBuffer: 4 * 1024 * 1024 });
+    const output = execFileSync(process.execPath, ['.agents/skills/vbook-extensions/scripts/vbook.js', 'test', temp, 'toc.js', 'https://comnguoinovel.site/truyen/' + slug, '--server', server], { cwd: root, encoding: 'utf8', timeout: 120000, maxBuffer: 4 * 1024 * 1024 });
     const match = output.match(/\[test\] output:\n([\s\S]*?)\n\[test\] code=/);
     assert.ok(match, output);
     const result = JSON.parse(match[1]);

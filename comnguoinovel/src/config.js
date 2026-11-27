@@ -1,7 +1,7 @@
-var BASE_URL = "https://comnguoinovel.com";
+var BASE_URL = "https://comnguoinovel.site";
 try { if (DOMAIN) BASE_URL = String(DOMAIN).replace(/\/+$/, ""); } catch (e) {}
-var API_URL = "https://api.comnguoinovel.com/api";
-var ASSET_URL = "https://assets.comnguoinovel.com";
+var API_URL = "https://api.comnguoinovel.site/api";
+var ASSET_URL = "https://assets.comnguoinovel.site";
 var CONTENT_CATEGORY = "general";
 try { if (String(CATEGORY) === "boylove") CONTENT_CATEGORY = "boylove"; } catch (e) {}
 

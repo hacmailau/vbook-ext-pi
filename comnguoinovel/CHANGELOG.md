@@ -1,5 +1,11 @@
 # Lịch sử thay đổi
 
+## Bản 3 — 27/11/2026
+
+- Đổi website sang `https://comnguoinovel.site` (API `api.comnguoinovel.site`, ảnh `assets.comnguoinovel.site`). Tên miền `.com` đã chuyển hướng 301 sang `.site`.
+- `regexp` nhận cả `.site` và `.com`, nên liên kết chia sẻ cũ vẫn mở được.
+- Đã kiểm tra trên Android (Samsung SM-A146P, Android 15) qua dev server: `explore`, `home`, `genre`, `search`, `detail`, `toc` (557 chương) và `listing`. `chap` chưa kiểm tra vì cần đăng nhập thủ công trong browser VBook.
+
 ## Bản 2 — 06/10/2026
 
 - Tăng kích thước trang mục lục từ 100 lên 1.000 chương. Truyện dài hơn tiếp tục tải theo `totalPages`; mỗi lần tải vẫn lấy dữ liệu mới từ website.

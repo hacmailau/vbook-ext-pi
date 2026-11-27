@@ -6,7 +6,7 @@ Extension cho ứng dụng vBook, kèm bộ công cụ để phát triển exten
 
 | Thư mục | Loại | Mô tả |
 |---|---|---|
-| `comnguoinovel` | novel | Tìm, khám phá Chung/BL, đọc truyện từ comnguoinovel.com. Cần đăng nhập thủ công trong browser VBook để đọc chương. Chi tiết: [comnguoinovel/README.md](comnguoinovel/README.md). |
+| `comnguoinovel` | novel | Tìm, khám phá Chung/BL, đọc truyện từ comnguoinovel.site. Cần đăng nhập thủ công trong browser VBook để đọc chương. Chi tiết: [comnguoinovel/README.md](comnguoinovel/README.md). |
 | `9router-translate` | translate | Dịch bằng endpoint tương thích OpenAI (9Router). Model mặc định `cbai/deepseek-v4.1-flash`; nhập API key trong phần cài đặt extension. |
 
 ## Cài vào vBook
