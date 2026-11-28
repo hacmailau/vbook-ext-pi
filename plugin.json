@@ -18,7 +18,7 @@
     {
       "name": "Truyện Dịch AI",
       "author": "hacmailau",
-      "version": 1,
+      "version": 2,
       "source": "https://truyendichai.com",
       "description": "Truyện dịch AI từ truyendichai.com. Cần mở site trong trình duyệt vBook để qua Cloudflare.",
       "type": "novel",

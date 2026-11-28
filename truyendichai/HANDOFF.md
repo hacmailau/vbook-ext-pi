@@ -1,6 +1,6 @@
 # HANDOFF: truyendichai
 
-Cập nhật: 2026-11-28. Trạng thái: v1 đã build (plugin.zip 44938 byte), cài lên SM-A146P (install code=200), thêm vào registry gốc. Tất cả script PASS; chap với chương chưa dịch báo lỗi sau ~8 giây (Turnstile). Nhánh API key Gemini: UNTESTED.
+Cập nhật: 2026-11-28. Trạng thái: v2 đã build (plugin.zip 45752 byte), cài lên SM-A146P (install code=200), registry gốc version 2. v2 thêm explore.js: Mới cập nhật, Đọc nhiều tuần, Xem nhiều tháng, Đề cử tuần/tháng, 3 bảng Qidian, Top theo năm. Tất cả script PASS; chap với chương chưa dịch báo lỗi sau ~8 giây (Turnstile). Nhánh API key Gemini: UNTESTED.
 
 ## Đã làm
 - Khảo sát site qua Chrome CDP, ghi trong `SPEC.md`.

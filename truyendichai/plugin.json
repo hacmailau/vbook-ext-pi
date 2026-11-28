@@ -2,7 +2,7 @@
   "metadata": {
     "name": "Truyện Dịch AI",
     "author": "Personal",
-    "version": 1,
+    "version": 2,
     "source": "https://truyendichai.com",
     "description": "Truyện dịch AI từ truyendichai.com. Cần mở site trong trình duyệt vBook để qua Cloudflare.",
     "locale": "vi",
@@ -13,6 +13,7 @@
   },
   "script": {
     "home": "home.js",
+    "explore": "explore.js",
     "genre": "genre.js",
     "search": "search.js",
     "detail": "detail.js",
