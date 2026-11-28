@@ -57,7 +57,7 @@ Màn hình app (chụp 16:25) hiển thị đúng tab Khám phá. Logcat không 
 3. **Commit** các thay đổi chưa commit ở mục 1 khi người dùng yêu cầu, chia thành các commit riêng (skill, tài liệu, phần còn lại). Không tự push.
 4. **Repo `comnguoinovel-v2` cũ** vẫn trỏ về domain `.com`. Đề xuất: thêm dòng chuyển hướng về `vbook-ext-pi` trong README của nó, rồi người dùng tự archive. Chưa làm.
 5. **Dọn nợ lặt vặt** (chưa hỏi người dùng): `.agents/skills/` của repo này là bản cũ hơn upstream mới nhất ("Rework the vBook skill and templates"). Có thể so sánh rồi chọn phần cần lấy.
-6. **Chọn license** cho repo (chưa có `LICENSE`). Cần người dùng quyết định.
+6. **License:** đã thêm `LICENSE` (MIT, `hacmailau`, 2026). Chưa kiểm tra license của các skill bên thứ ba trong `.agents/skills/` (mattpocock/skills và template skill `vbook-extensions`).
 
 ## 5. Cách kết nối thiết bị (Windows)
 

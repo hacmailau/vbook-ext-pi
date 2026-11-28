@@ -23,5 +23,5 @@ report.json
 # device monitoring output (logcat, screenshots)
 .monitor/
 
-# remote-pi per-directory config (per-machine)
-.pi/remote-pi/
+# pi agent per-machine config (default model, remote-pi)
+.pi/
