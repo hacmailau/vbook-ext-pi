@@ -6,6 +6,7 @@ Repo consistency guard for the hybrid layout (option C):
 - every extension dir holding plugin.zip should be listed in a registry
 - when <ext>/src exists, every script declared in plugin.json must exist there
 - plugin.json must parse, metadata.version must be an integer
+- registry entry version and plugin.zip version must equal <ext>/plugin.json metadata.version
 - extension-api.md and the skill copy must stay identical
 
 Usage:
@@ -16,6 +17,7 @@ import json
 import os
 import re
 import sys
+import zipfile
 
 REGISTRIES = (
     "plugin.json",
@@ -45,6 +47,7 @@ def main():
 
     # 1. registry -> disk
     registered = set()
+    registry_versions = []  # (registry file, ext dir, version)
     for name in REGISTRIES:
         if not os.path.isfile(name):
             continue  # registries are optional; only the types in use need one
@@ -59,6 +62,7 @@ def main():
                 errors.append("{}: unparsable path {}".format(name, entry.get("path")))
                 continue
             registered.add(d)
+            registry_versions.append((name, d, entry.get("version")))
             if not os.path.isdir(d):
                 errors.append("{}: points at missing dir '{}'".format(name, d))
 
@@ -81,6 +85,21 @@ def main():
         version = (plugin.get("metadata") or {}).get("version")
         if not isinstance(version, int):
             errors.append("{}/plugin.json: metadata.version is not an int ({!r})".format(ext, version))
+        else:
+            for reg, d, reg_version in registry_versions:
+                if d == ext and reg_version != version:
+                    errors.append("{}: lists {} as version {!r} but {}/plugin.json is {}".format(
+                        reg, ext, reg_version, ext, version))
+            if has_zip:
+                try:
+                    with zipfile.ZipFile(os.path.join(ext, "plugin.zip")) as z:
+                        zip_version = json.loads(z.read("plugin.json").decode("utf-8")).get("metadata", {}).get("version")
+                except (KeyError, ValueError, zipfile.BadZipFile) as e:
+                    errors.append("{}/plugin.zip: cannot read plugin.json ({})".format(ext, e))
+                else:
+                    if zip_version != version:
+                        errors.append("{}/plugin.zip is version {!r} but plugin.json is {}; rebuild it".format(
+                            ext, zip_version, version))
 
         src = os.path.join(ext, "src")
         if not os.path.isdir(src):
