@@ -1,0 +1,30 @@
+{
+  "metadata": {
+    "name": "Truyện Dịch AI",
+    "author": "Personal",
+    "version": 1,
+    "source": "https://truyendichai.com",
+    "description": "Truyện dịch AI từ truyendichai.com. Cần mở site trong trình duyệt vBook để qua Cloudflare.",
+    "locale": "vi",
+    "regexp": "(?:www\\.)?truyendichai\\.com/truyen/[^/?#]+/?$",
+    "type": "novel",
+    "nsfw": false,
+    "encrypt": false
+  },
+  "script": {
+    "home": "home.js",
+    "genre": "genre.js",
+    "search": "search.js",
+    "detail": "detail.js",
+    "toc": "toc.js",
+    "chap": "chap.js"
+  },
+  "config": {
+    "DOMAIN": {
+      "title": "Website",
+      "default": "https://truyendichai.com",
+      "mode": "input",
+      "format": "text"
+    }
+  }
+}

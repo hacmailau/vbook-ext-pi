@@ -16,6 +16,17 @@
       "icon": "https://raw.githubusercontent.com/hacmailau/vbook-ext-pi/main/comnguoinovel/icon.png"
     },
     {
+      "name": "Truyện Dịch AI",
+      "author": "hacmailau",
+      "version": 1,
+      "source": "https://truyendichai.com",
+      "description": "Truyện dịch AI từ truyendichai.com. Cần mở site trong trình duyệt vBook để qua Cloudflare.",
+      "type": "novel",
+      "locale": "vi",
+      "path": "https://raw.githubusercontent.com/hacmailau/vbook-ext-pi/main/truyendichai/plugin.zip",
+      "icon": "https://raw.githubusercontent.com/hacmailau/vbook-ext-pi/main/truyendichai/icon.png"
+    },
+    {
       "name": "9Router Translate",
       "author": "vBook",
       "version": 1,

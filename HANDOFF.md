@@ -17,6 +17,7 @@ Cập nhật lần cuối: 2026-11-28.
 | Extension | Loại | Version | Ghi chú |
 |---|---|---|---|
 | `comnguoinovel` | novel | 5 (registry gốc còn ghi 3, xem mục 4) | Site `comnguoinovel.site`. Đọc chương chạy trong WebView, chi tiết ở `comnguoinovel/HANDOFF.md`. Có tests trong `comnguoinovel/tests/`. |
+| `truyendichai` | novel | 1 | Site `truyendichai.com`. Chương đọc qua WebView; chương chưa dịch cần Turnstile. Chi tiết ở `truyendichai/SPEC.md`, `truyendichai/HANDOFF.md`. |
 | `9router-translate` | translate | 1 | Có `icon.png`. `source` trỏ tới một địa chỉ Tailscale riêng, người dùng đã chọn giữ nguyên. |
 
 Registry: `plugin.json` (gốc, cả hai extension) và `translate.json`. URL cài trong vBook:
