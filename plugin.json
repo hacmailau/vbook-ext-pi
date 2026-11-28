@@ -29,7 +29,7 @@
     {
       "name": "Truyện Dịch AI (us)",
       "author": "Personal",
-      "version": 2,
+      "version": 3,
       "source": "https://truyendich.space",
       "description": "Tìm và đọc truyện qua API JSON, mặc định dùng mirror truyendich.space.",
       "type": "novel",
