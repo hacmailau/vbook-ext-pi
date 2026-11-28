@@ -34,7 +34,8 @@
       "description": "Tìm và đọc truyện qua API JSON, mặc định dùng mirror truyendich.space.",
       "type": "novel",
       "locale": "vi",
-      "path": "https://raw.githubusercontent.com/hacmailau/vbook-ext-pi/main/truyendichus/plugin.zip"
+      "path": "https://raw.githubusercontent.com/hacmailau/vbook-ext-pi/main/truyendichus/plugin.zip",
+      "icon": "https://raw.githubusercontent.com/hacmailau/vbook-ext-pi/main/truyendichus/icon.png"
     },
     {
       "name": "9Router Translate",
