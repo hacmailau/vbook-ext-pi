@@ -1,5 +1,13 @@
 # Lịch sử thay đổi
 
+## Bản 5 — 28/11/2026
+
+- Viết lại cách đọc chương. `chap.js` và `reader.js` giải mã `tokenCanvas` từ HTML chương, rồi gửi `POST /novels/{slug}/chap/{n}/read`, giải mã AES và đảo thứ tự dòng.
+- Request đọc chương chạy trong `Engine.newBrowser()`, dùng lại phiên người dùng đã xác minh qua "Trang nguồn". Gọi từ `fetch` của extension bị API trả `403 CHAPTER_CLIENT_FORBIDDEN`.
+- Khi phiên chưa xác minh hoặc hết hạn, hiện thông báo hướng dẫn bấm "Trang nguồn" rồi tải lại chương, thay vì chờ 30 giây rồi báo hết thời gian.
+- Không có bản 4 được phát hành: bản sửa đầu tiên (đọc qua API từ extension) vẫn ghi version 3 và chưa đọc được chương.
+- Chưa có kết quả kiểm thử đầy đủ cho bản này trong `VALIDATION.md`. Tình trạng đọc chương và các trường hợp chưa kiểm chứng nằm trong `HANDOFF.md` của extension.
+
 ## Bản 3 — 27/11/2026
 
 - Đổi website sang `https://comnguoinovel.site` (API `api.comnguoinovel.site`, ảnh `assets.comnguoinovel.site`). Tên miền `.com` đã chuyển hướng 301 sang `.site`.

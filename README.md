@@ -43,7 +43,7 @@ Chỉ có `src/` là source. `plugin.zip` là output của `vbook.js build`, đ�
    ```
 4. Build, cài thử, cập nhật registry, rồi chạy `python scripts/check_repo.py`.
 
-Chi tiết từng bước và các bẫy thường gặp nằm trong [docs/WORKFLOW.md](docs/WORKFLOW.md). Nếu dùng AI agent, đọc [AGENTS.md](AGENTS.md) trước.
+Người mới tiếp quản: đọc [docs/BEGINNER.md](docs/BEGINNER.md) trước. Chi tiết từng bước và các bẫy thường gặp nằm trong [docs/WORKFLOW.md](docs/WORKFLOW.md). Nếu dùng AI agent, đọc [AGENTS.md](AGENTS.md) trước.
 
 ## Quy ước
 

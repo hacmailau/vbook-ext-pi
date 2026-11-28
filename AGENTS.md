@@ -16,7 +16,29 @@ Do not infer permission to build, install, commit, or push from a request that o
 
 Source-first layout: every extension keeps plaintext `src/` plus `plugin.json`, `icon.png` and the built `plugin.zip`. `vbook.js test|build|install` works for all of them.
 
+- Read `HANDOFF.md` first: current state, device connection steps, open items, pitfalls.
 - Read `README.md` for the layout and `docs/WORKFLOW.md` for the create/test/release workflow.
 - Read `docs/SYSTEM-OVERVIEW.md` for the runtime architecture, API contract layers, CLI path and common pitfalls (see its banner for which parts apply here).
 - Run `python scripts/check_repo.py` before committing; exit 0 is required.
 - Never commit API keys or personal host addresses into `src/` or `plugin.json`.
+
+## Agent execution gates (for pi)
+
+1. **Diagnose & SPEC first:** When a failure has an unclear root cause, run read-only or temporary diagnostic probes only (remove temporary probes afterward). Write `<ext>/SPEC.md` summarizing verified facts and options, then **stop and ask the user to choose an option** before applying code fixes.
+2. **Hard stop after 3 failed attempts:** In FIX mode, if `vbook.js test` still fails after at most 3 fix/retest cycles, **stop immediately** — do not keep looping on speculative edits.
+3. **Explicit PASS / FAIL report:** Start every test or fix report with a clear **PASS** or **FAIL** status, followed by a per-script status table (`PASS` / `FAIL` / `UNTESTED`) and exact `vbook.js` output/evidence.
+4. **Handoff on stop:** When stopping on FAIL or handing off work, write or update `<ext>/HANDOFF.md` with verified findings, device/network setup, and concrete next steps.
+
+## Agent skills
+
+### Issue tracker
+
+Issue và spec là file markdown trong `.scratch/<feature>/`. See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Dùng bộ nhãn mặc định (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`), ghi ở dòng `Status:` của file issue. See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context: một `GLOSSARY.md` và `docs/adr/` ở thư mục gốc. See `docs/agents/domain.md`.
