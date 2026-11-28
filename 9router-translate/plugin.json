@@ -2,7 +2,7 @@
   "metadata": {
     "name": "9Router Translate",
     "author": "vBook",
-    "version": 1,
+    "version": 2,
     "source": "https://phuocpham.tail2c7010.ts.net",
     "description": "Dịch nội dung bằng 9Router (API tương thích OpenAI)",
     "locale": "global",
