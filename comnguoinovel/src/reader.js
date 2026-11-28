@@ -1,6 +1,5 @@
 // Chapter reader helpers. Requires config.js (API_URL, BASE_URL) and crypto.js (CryptoJS) loaded by the caller.
 var CHAPTER_PASSPHRASE = "z4x8vog2a13v" + "z4x8vog2a13v";
-var TOKEN_CACHE_KEY = "cn_access_token";
 
 function chapterTokenFromHtml(html) {
     // The token is embedded as a base64 SVG data URL inside a Next.js payload, not in the DOM.
@@ -42,53 +41,47 @@ function chapterTokenFromHtml(html) {
     return text;
 }
 
-function accessTokenFromBrowser() {
-    var browser = null;
-    try {
-        browser = Engine.newBrowser();
-        browser.launch(BASE_URL + "/", 15000);
-        browser.callJs("_callNativeFunction(JSON.stringify(['putVariable','at',String(localStorage.getItem('accessToken')||'')])); ''", 5000);
-        var token = String(browser.getVariable("at") || "");
-        return /^[A-Za-z0-9._~+\/=-]{20,}$/.test(token) ? token : "";
-    } finally {
-        if (browser) { try { browser.close(); } catch (ignored) {} }
-    }
-}
-
-function cachedAccessToken(forceRefresh) {
-    if (forceRefresh) localStorage.removeItem(TOKEN_CACHE_KEY);
-    var cached = String(localStorage.getItem(TOKEN_CACHE_KEY) || "");
-    if (cached) return cached;
-    var token = accessTokenFromBrowser();
-    if (token) localStorage.setItem(TOKEN_CACHE_KEY, token);
-    return token;
-}
-
 function randomKey() {
     var hex = "0123456789abcdef", out = "";
     for (var i = 0; i < 32; i++) out += hex.charAt(Math.floor(Math.random() * 16));
     return out;
 }
 
+// Runs inside the WebView page, so the request carries the browser session (cookies, localStorage bearer).
+function pageRead(apiUrl, token, key) {
+    var status = 0, body = "";
+    try {
+        var bearer = localStorage.getItem("accessToken") || "";
+        var x = new XMLHttpRequest();
+        x.open("POST", apiUrl, false);
+        x.withCredentials = true;
+        x.setRequestHeader("Content-Type", "application/json");
+        x.setRequestHeader("Accept", "application/json");
+        x.setRequestHeader("X-Chapter-Token", token);
+        x.setRequestHeader("Idempotency-Key", key);
+        x.setRequestHeader("X-Chapter-Read-Contract-Version", "1");
+        if (bearer) x.setRequestHeader("Authorization", "Bearer " + bearer);
+        x.send("{}");
+        status = x.status;
+        body = String(x.responseText || "");
+    } catch (e) { body = String(e && e.message || e); }
+    _callNativeFunction(JSON.stringify(["putVariable", "status", String(status)]));
+    _callNativeFunction(JSON.stringify(["putVariable", "body", body]));
+    return "";
+}
+
 // Returns { status, text } so the caller can map errors.
-function readChapter(slug, number, bearer, token, chapterUrl) {
-    var headers = {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Origin": BASE_URL,
-        "Referer": chapterUrl,
-        "X-Chapter-Token": token,
-        "Idempotency-Key": randomKey(),
-        "X-Chapter-Read-Contract-Version": "1"
-    };
-    if (bearer) headers["Authorization"] = "Bearer " + bearer;
-    var response = fetch(API_URL + "/novels/" + slug + "/chap/" + number + "/read", {
-        method: "POST",
-        headers: headers,
-        body: "{}",
-        timeout: 20000
-    });
-    return { status: Number(response.status), text: String(response.text() || "") };
+function readChapter(slug, number, token, chapterUrl) {
+    var browser = null;
+    try {
+        browser = Engine.newBrowser();
+        browser.launch(chapterUrl, 15000);
+        var js = "(" + pageRead.toString() + ")(" + JSON.stringify(API_URL + "/novels/" + slug + "/chap/" + number + "/read") + "," + JSON.stringify(token) + "," + JSON.stringify(randomKey()) + ")";
+        browser.callJs(js, 20000);
+        return { status: Number(browser.getVariable("status") || 0), text: String(browser.getVariable("body") || "") };
+    } finally {
+        if (browser) { try { browser.close(); } catch (ignored) {} }
+    }
 }
 
 function decodeChapterContent(cipher) {
@@ -102,12 +95,12 @@ function readErrorMessage(status, text) {
     var suffix = " (HTTP " + status + (code ? ", " + code : "") + ")";
     if (code === "CHAPTER_CLIENT_FORBIDDEN") return "Website không cho phép ứng dụng đọc chương trực tiếp. Hãy mở chương trong trình duyệt để đọc." + suffix;
     if (code === "READ_SESSION_ORIGIN_INVALID") return "Website từ chối nguồn yêu cầu (Origin/Referer)." + suffix;
-    if (code === "READ_SESSION_REQUIRED" || code === "CHALLENGE_REQUIRED") return "Website yêu cầu xác minh phiên đọc. Mở comnguoinovel.site trong trình duyệt đã đăng nhập, hoàn tất xác minh rồi thử lại." + suffix;
+    if (code === "READ_SESSION_REQUIRED" || code === "CHALLENGE_REQUIRED") return "Website yêu cầu xác minh phiên đọc. Hãy bấm \"Trang nguồn\" để mở chương trong vBook, hoàn tất xác minh rồi tải lại chương." + suffix;
     if (code === "LEGACY_CHAPTER_READ_RETIRED") return "API đọc chương cũ đã bị website ngừng hỗ trợ." + suffix;
     if (code === "ADS_REQUIRED") return "Website yêu cầu xem quảng cáo trước khi đọc chương này." + suffix;
     if (code === "READING_COOLDOWN") return "Bạn đang bị giới hạn tần suất đọc; hãy thử lại sau." + suffix;
     if (code === "CHAPTER_TEMPORARILY_UNAVAILABLE") return "Chương tạm thời không khả dụng; hãy thử lại sau." + suffix;
-    if (status === 401) return "Cần đăng nhập website trong trình duyệt VBook." + suffix;
+    if (status === 401) return "Cần đăng nhập website: bấm \"Trang nguồn\", đăng nhập rồi tải lại chương." + suffix;
     if (status === 403) return "Website từ chối yêu cầu đọc chương. Hãy mở chương trong trình duyệt để đọc." + suffix;
     if (status === 429) return "Website giới hạn truy cập; hãy thử lại sau." + suffix;
     return "Không đọc được chương." + suffix;
