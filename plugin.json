@@ -27,6 +27,16 @@
       "icon": "https://raw.githubusercontent.com/hacmailau/vbook-ext-pi/main/truyendichai/icon.png"
     },
     {
+      "name": "Truyện Dịch AI (us)",
+      "author": "Personal",
+      "version": 2,
+      "source": "https://truyendich.space",
+      "description": "Tìm và đọc truyện qua API JSON, mặc định dùng mirror truyendich.space.",
+      "type": "novel",
+      "locale": "vi",
+      "path": "https://raw.githubusercontent.com/hacmailau/vbook-ext-pi/main/truyendichus/plugin.zip"
+    },
+    {
       "name": "9Router Translate",
       "author": "vBook",
       "version": 1,

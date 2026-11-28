@@ -1,0 +1,36 @@
+{
+  "metadata": {
+    "name": "Truyện Dịch AI (us)",
+    "author": "Personal",
+    "version": 2,
+    "source": "https://truyendich.space",
+    "description": "Tìm và đọc truyện từ truyendich.us qua API JSON.",
+    "locale": "vi",
+    "regexp": "(?:https?://)?(?:www\\.)?truyendich\\.(?:us|fit|space)/doc-truyen/(?:(?:cv|ai|translate)/)?[^/?#]+/?(?:\\?[^#]*)?(?:#.*)?",
+    "type": "novel",
+    "nsfw": false,
+    "encrypt": false
+  },
+  "script": {
+    "home": "home.js",
+    "explore": "explore.js",
+    "genre": "genre.js",
+    "search": "search.js",
+    "detail": "detail.js",
+    "page": "page.js",
+    "toc": "toc.js",
+    "chap": "chap.js"
+  },
+  "config": {
+    "DOMAIN": {
+      "title": "Website",
+      "default": "https://truyendich.space",
+      "mode": "select",
+      "values": [
+        "https://truyendich.us",
+        "https://truyendich.fit",
+        "https://truyendich.space"
+      ]
+    }
+  }
+}
